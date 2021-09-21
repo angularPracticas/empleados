@@ -2,7 +2,9 @@
     margin-top: 4px;
 }
 
-.btn {}
+.btn {
+    float: right;
+}
 
 .table {
     margin-top: 5px;
@@ -14,4 +16,10 @@
 
 i {
     cursor: pointer;
+}
+
+.nonEmployess{
+    margin-top: 15px;
+    text-align: center;
+    color: blue;
 }

@@ -2,8 +2,9 @@
     <div class="card">
         <div class="card-body">
             <span class="h3">Lista de Empleados</span>
-            <button class="btn btn-dark btn-lg float-right" routerLink="/create-empleado">Agregar</button>
-            <table class="table table-striped">
+            <button class="btn btn-dark btn-lg" routerLink="/create-empleado">Agregar</button>
+            <h4 class="nonEmployess" *ngIf="empleados.length == 0">No hay empleados por mostrar</h4>
+            <table *ngIf="empleados.length > 0" class="table table-striped">
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -14,34 +15,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>tomas</td>
-                        <td>Perez</td>
-                        <td>5512436271</td>
-                        <td>25000</td>
+                    <tr *ngFor="let empleado of empleados">
+                        <td>{{ empleado.nombre }}</td>
+                        <td>{{ empleado.apellido }}</td>
+                        <td>{{ empleado.documento }}</td>
+                        <td>{{ empleado.salario | currency }}</td>
                         <td>
-                            <i class="far farEdit fa-edit fa-lg text-info"></i>
-                            <i class="fas fa-trash-alt fa-lg text-danger"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>tomas</td>
-                        <td>Perez</td>
-                        <td>5512436271</td>
-                        <td>25000</td>
-                        <td>
-                            <i class="far farEdit fa-edit fa-lg text-info"></i>
-                            <i class="fas fa-trash-alt fa-lg text-danger"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>tomas</td>
-                        <td>Perez</td>
-                        <td>5512436271</td>
-                        <td>25000</td>
-                        <td>
-                            <i class="far farEdit fa-edit fa-lg text-info"></i>
-                            <i class="fas fa-trash-alt fa-lg text-danger"></i>
+                            <i class="far farEdit fa-edit fa-lg text-info" [routerLink]="['/editEmpleado',empleado.id]"></i>
+                            <i (click)="eliminarEmpleado(empleado.id, empleado.nombre)" class="fas fa-trash-alt fa-lg text-danger"></i>
                         </td>
                     </tr>
                 </tbody>
